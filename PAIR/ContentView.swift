@@ -5,18 +5,83 @@
 //  Created by Daniela Munoz on 4/10/24.
 //
 
+import PhotosUI
 import SwiftUI
 
 struct ContentView: View {
+    @State var imageSelection: PhotosPickerItem? = nil
+    @State var loadState: LoadState = .unknown
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Color("LightGray").ignoresSafeArea()
+            switch loadState {
+            case .unknown:
+                VStack (spacing: 25){
+                    Text("🍐")
+                        .font(.system(size: 100))
+                    Text("Welcome to PAIR!")
+                        .font(.system(size: 35, weight: .semibold))
+                }
+                VStack {
+                    Spacer()
+                    PhotosPicker(selection: $imageSelection,
+                                 matching: .images) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(height: 65)
+                                .foregroundStyle(Color("Green"))
+                            Text("Select Receipt")
+                                .font(.system(size: 25, weight: .medium))
+                                .foregroundStyle(Color("LightGray"))
+                        }
+                    }.padding(.horizontal, 20)
+                }
+            case .loaded(let image):
+                ZStack{
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: UIScreen.main.bounds.size.width)
+                    VStack{
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                imageSelection = nil
+                                loadState = .unknown
+                            }) {
+                                Image(systemName: "x.circle")
+                                    .font(.system(size: 25))
+                                    .foregroundStyle(.black)
+                            }
+                        }.padding()
+                        Spacer()
+                    }.padding()
+                }
+            case .loading, .failed:
+                EmptyView()
+            }
+            
         }
-        .padding()
+        .onChange(of: imageSelection) {
+            if imageSelection != nil {
+                Task {
+                    do {
+                        loadState = .loading
+                        if let image = try await imageSelection?.loadTransferable(type: Image.self) {
+                            loadState = .loaded(image)
+                        }
+                    } catch {
+                        loadState = .failed
+                    }
+                }
+            }
+        }
     }
+}
+
+enum LoadState: Equatable {
+    case unknown, loading, loaded(Image), failed
 }
 
 #Preview {
