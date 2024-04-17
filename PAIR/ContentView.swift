@@ -18,10 +18,13 @@ struct ContentView: View {
             switch loadState {
             case .unknown:
                 VStack (spacing: 25){
-                    Text("🍐")
-                        .font(.system(size: 100))
+                    Image("PairLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 75)
+                    
                     Text("Welcome to PAIR!")
-                        .font(.system(size: 35, weight: .semibold))
+                        .font(Font.custom("CrimsonText-Bold", size: 32, relativeTo: .title))
                 }
                 VStack {
                     Spacer()
