@@ -15,6 +15,8 @@
 		654B5B662BC6E41400F585AD /* PAIRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B652BC6E41400F585AD /* PAIRUITests.swift */; };
 		654B5B682BC6E41400F585AD /* PAIRUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B672BC6E41400F585AD /* PAIRUITestsLaunchTests.swift */; };
 		654B5B952BD02AF500F585AD /* Crimson_Text in Resources */ = {isa = PBXBuildFile; fileRef = 654B5B942BD02AF500F585AD /* Crimson_Text */; };
+		654B5B972BD02FDB00F585AD /* SortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B962BD02FDB00F585AD /* SortingView.swift */; };
+		654B5B992BD0313D00F585AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B982BD0313D00F585AD /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		654B5B672BC6E41400F585AD /* PAIRUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PAIRUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		654B5B832BD0262A00F585AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		654B5B942BD02AF500F585AD /* Crimson_Text */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Crimson_Text; sourceTree = "<group>"; };
+		654B5B962BD02FDB00F585AD /* SortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingView.swift; sourceTree = "<group>"; };
+		654B5B982BD0313D00F585AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,9 @@
 				654B5B832BD0262A00F585AD /* Info.plist */,
 				654B5B942BD02AF500F585AD /* Crimson_Text */,
 				654B5B492BC6E41300F585AD /* PAIRApp.swift */,
+				654B5B982BD0313D00F585AD /* AppDelegate.swift */,
 				654B5B4B2BC6E41300F585AD /* ContentView.swift */,
+				654B5B962BD02FDB00F585AD /* SortingView.swift */,
 				654B5B4D2BC6E41400F585AD /* Assets.xcassets */,
 				654B5B4F2BC6E41400F585AD /* PAIR.entitlements */,
 				654B5B502BC6E41400F585AD /* Preview Content */,
@@ -265,8 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				654B5B992BD0313D00F585AD /* AppDelegate.swift in Sources */,
 				654B5B4C2BC6E41300F585AD /* ContentView.swift in Sources */,
 				654B5B4A2BC6E41300F585AD /* PAIRApp.swift in Sources */,
+				654B5B972BD02FDB00F585AD /* SortingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +454,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PAIR.PAIR;
+				PRODUCT_BUNDLE_IDENTIFIER = "PAIR-APP.PAIR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -486,7 +494,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PAIR.PAIR;
+				PRODUCT_BUNDLE_IDENTIFIER = "PAIR-APP.PAIR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
