@@ -367,9 +367,7 @@ struct SignUpPage2: View {
                     }
                 }
                 // Next Button
-                Button(action: {
-                    self.offset = -screenSize.width - 15
-                }) {
+                NavigationLink(destination: ScanningView()) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(.black)
