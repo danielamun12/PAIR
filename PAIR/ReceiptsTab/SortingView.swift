@@ -9,16 +9,15 @@ import SwiftUI
 import Vision
 
 struct SortingView: View {
+    @Binding var receipt: String?
     @State var businessItmes: [[String]] = []
     @State var personalItems: [String] = []
     
     var body: some View {
         ZStack {
             appBackground()
+            Text("SORTING")
         }
     }
 }
 
-#Preview {
-    SortingView()
-}
