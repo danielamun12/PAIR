@@ -120,12 +120,7 @@ struct FullReceiptSortingView: View {
                             }
                             Text("$"+String(format: "%.2f", total))
                                 .font(.system(size: 36, weight: .bold))
-                                .foregroundStyle(LinearGradient(
-                                    gradient: Gradient(stops: [
-                                        .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
-                                        .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
-                                    startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
-                                    endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
+                                .foregroundStyle(greenGradient)
                         }.padding(.bottom, 20)
                         Spacer()
                     }
@@ -210,13 +205,7 @@ struct FullReceiptSortingView: View {
                 .padding(.bottom, 25)
                 .padding(.horizontal, 30)
                 .background(RoundedRectangle(cornerRadius: 15)
-                    .fill(LinearGradient(
-                        gradient: Gradient(stops: [
-                            .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
-                            .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
-                        startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
-                        endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
-                        .padding(.horizontal, 15))
+                    .fill(greenGradient))
             }
         }.navigationBarBackButtonHidden(true)
     }
@@ -389,13 +378,7 @@ struct ItemSortingView: View {
                 .padding(.bottom, 25)
                 .padding(.horizontal, 30)
                 .background(RoundedRectangle(cornerRadius: 15)
-                    .fill(LinearGradient(
-                        gradient: Gradient(stops: [
-                            .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
-                            .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
-                        startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
-                        endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
-                        .padding(.horizontal, 15))
+                    .fill(greenGradient))
             }
             .alert("Please make sure to sort all items before moving on.", isPresented: $incompleteSortingAlert) {
                 Button("OK", role: .cancel) { }
@@ -538,13 +521,7 @@ struct CategorySortingView: View {
                 .padding(.bottom, 25)
                 .padding(.horizontal, 30)
                 .background(RoundedRectangle(cornerRadius: 15)
-                    .fill(LinearGradient(
-                        gradient: Gradient(stops: [
-                            .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
-                            .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
-                        startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
-                        endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
-                        .padding(.horizontal, 15))
+                    .fill(greenGradient))
             }
         }.alert("Please make sure to categorize all items.", isPresented: $incompleteSortingAlert) {
             Button("OK", role: .cancel) { }

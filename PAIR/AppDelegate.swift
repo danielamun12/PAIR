@@ -12,7 +12,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         configureNavigationBarAppearance()
-        configureTabBarAppearance()
         return true
     }
 
@@ -33,26 +32,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
     }
-    
-    private func configureTabBarAppearance() {
-        let tabBarAppearance = UITabBarAppearance()
-        
-        tabBarAppearance.configureWithOpaqueBackground()
-        tabBarAppearance.backgroundColor = UIColor(named: "BottomBar")
-        tabBarAppearance.shadowColor = .clear
-        
-        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "PrimaryButton")]
-        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor(named: "PrimaryButton")
-        
-        UITabBar.appearance().standardAppearance = tabBarAppearance
-        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-    }
 }
 
 struct appBackground: View{
     var body: some View{
         ZStack{
-            Color("BackgroundOffwhite").ignoresSafeArea()
+            Color.white.ignoresSafeArea()
         }.ignoresSafeArea()
     }
 }
@@ -111,3 +96,10 @@ extension View {
         clipShape(RoundedCorner(radius: radius, corners: corners) )
     }
 }
+
+let greenGradient = LinearGradient(
+    gradient: Gradient(stops: [
+        .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
+        .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
+    startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
+    endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579))
