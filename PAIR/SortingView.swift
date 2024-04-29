@@ -90,7 +90,7 @@ struct FullReceiptSortingView: View {
     @Binding var categoriesItems: [String: String]
     
     var body: some View {
-        VStack (spacing: 0) {
+        ZStack {
             VStack (spacing: 15){
                 // HEADER (NAME, DATE, TOTAL)
                 HStack {
@@ -162,48 +162,51 @@ struct FullReceiptSortingView: View {
                                 .strokeBorder(Color(#colorLiteral(red: 0.727246105670929, green: 0.727246105670929, blue: 0.727246105670929, alpha: 1)), lineWidth: 1)
                                 .padding(.horizontal, 15)
                         )
-                    Rectangle().foregroundStyle(.clear).frame(height: 25)
+                    Rectangle().foregroundStyle(.clear).frame(height: 200)
                 }.clipped()
             }
             // BOTTOM SHEET
-            VStack (spacing: 20){
-                Text("SORT RECEIPT AS")
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(.white)
-                    .tracking(0.84)
-                HStack (spacing: 15){
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
-                            .frame(height: 45)
-                        Text("PERSONAL")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(.white)
-                            .tracking(0.48)
+            VStack {
+                Spacer()
+                VStack (spacing: 20){
+                    Text("SORT RECEIPT AS")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundStyle(.white)
+                        .tracking(0.84)
+                    HStack (spacing: 15){
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
+                                .frame(height: 45)
+                            Text("PERSONAL")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundStyle(.white)
+                                .tracking(0.48)
+                        }
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
+                                .frame(height: 45)
+                            Text("BUSINESS")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundStyle(.white)
+                                .tracking(0.48)
+                        }
                     }
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
-                            .frame(height: 45)
-                        Text("BUSINESS")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(.white)
-                            .tracking(0.48)
+                    Button(action: {sortingStage = .items}) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
+                                .frame(height: 45)
+                            Text("MIXED")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundStyle(.white)
+                                .tracking(0.48)
+                        }
                     }
                 }
-                Button(action: {sortingStage = .items}) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
-                            .frame(height: 45)
-                        Text("MIXED")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(.white)
-                            .tracking(0.48)
-                    }
-                }
-            }.padding(.top, 15)
+                .padding(.top, 15)
                 .padding(.bottom, 25)
                 .padding(.horizontal, 30)
                 .background(RoundedRectangle(cornerRadius: 15)
@@ -213,8 +216,9 @@ struct FullReceiptSortingView: View {
                             .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
                         startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
                         endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
-                        .frame(width: screenSize.width))
-        }.ignoresSafeArea(edges: .bottom)
+                        .padding(.horizontal, 15))
+            }
+        }
     }
 }
 
@@ -236,7 +240,7 @@ struct ItemSortingView: View {
     @State var incompleteSortingAlert: Bool = false
     
     var body: some View {
-        VStack (spacing: 0) {
+        ZStack {
             VStack (spacing: 15){
                 // HEADER (NAME, TOTAL)
                 HStack {
@@ -300,103 +304,105 @@ struct ItemSortingView: View {
                         if !personal.isEmpty {
                             GroupItems(groupName: "Personal", sortingStage: $sortingStage, items: $personal, selected: $selected, categoriesItems: $categoriesItems)
                         }
-                        Rectangle().foregroundStyle(.clear).frame(height: 25)
+                        Rectangle().foregroundStyle(.clear).frame(height: 125)
                     }
                 }.clipped()
             }
             
             // BOTTOM SHEET
-            VStack (spacing: 20){
-                HStack {
-                    Button(action: {sortingStage = .fullReceipt}) {
-                        ZStack {
-                            Circle()
-                                .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
-                                .frame(width: 23)
-                            Image(systemName: "arrow.left")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
+            VStack {
+                Spacer()
+                VStack (spacing: 20){
+                    HStack {
+                        Button(action: {sortingStage = .fullReceipt}) {
+                            ZStack {
+                                Circle()
+                                    .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
+                                    .frame(width: 23)
+                                Image(systemName: "arrow.left")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                            }
+                        }
+                        Spacer()
+                        Text("SORT SELECTED AS")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(.white)
+                            .tracking(0.84)
+                        Spacer()
+                        Button(action: {
+                            if unsortedItems.keys.isEmpty {
+                                sortingStage = .categories
+                            } else {
+                                incompleteSortingAlert = true
+                            }
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
+                                    .frame(width: 23)
+                                Image(systemName: "arrow.right")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                            }
                         }
                     }
-                    Spacer()
-                    Text("SORT SELECTED AS")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundStyle(.white)
-                        .tracking(0.84)
-                    Spacer()
-                    Button(action: {
-                        if unsortedItems.keys.isEmpty {
-                            sortingStage = .categories
-                        } else {
-                            incompleteSortingAlert = true
+                    HStack (spacing: 15){
+                        Button(action: {
+                            for key in selected.keys {
+                                business.removeValue(forKey: key)
+                                unsortedItems.removeValue(forKey: key)
+                            }
+                            personal.merge(selected) { (_, new) in new }
+                            selected = [:]
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
+                                    .frame(height: 45)
+                                Text("PERSONAL")
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .tracking(0.48)
+                            }
                         }
-                    }) {
-                        ZStack {
-                            Circle()
-                                .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
-                                .frame(width: 23)
-                            Image(systemName: "arrow.right")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
+                        
+                        Button(action: {
+                            for key in selected.keys {
+                                personal.removeValue(forKey: key)
+                                unsortedItems.removeValue(forKey: key)
+                            }
+                            business.merge(selected) { (_, new) in new }
+                            selected = [:]
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
+                                    .frame(height: 45)
+                                Text("BUSINESS")
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .tracking(0.48)
+                            }
                         }
                     }
                 }
-                HStack (spacing: 15){
-                    Button(action: {
-                        for key in selected.keys {
-                            business.removeValue(forKey: key)
-                            unsortedItems.removeValue(forKey: key)
-                        }
-                        personal.merge(selected) { (_, new) in new }
-                        selected = [:]
-                    }) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
-                                .frame(height: 45)
-                            Text("PERSONAL")
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundStyle(.white)
-                                .tracking(0.48)
-                        }
-                    }
-                    
-                    Button(action: {
-                        for key in selected.keys {
-                            personal.removeValue(forKey: key)
-                            unsortedItems.removeValue(forKey: key)
-                        }
-                        business.merge(selected) { (_, new) in new }
-                        selected = [:]
-                    }) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color(#colorLiteral(red: 0.307534396648407, green: 0.7093750238418579, blue: 0.34406521916389465, alpha: 1)))
-                                .frame(height: 45)
-                            Text("BUSINESS")
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundStyle(.white)
-                                .tracking(0.48)
-                        }
-                    }
-                }
+                .padding(.top, 15)
+                .padding(.bottom, 25)
+                .padding(.horizontal, 30)
+                .background(RoundedRectangle(cornerRadius: 15)
+                    .fill(LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
+                            .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
+                        startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
+                        endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
+                        .padding(.horizontal, 15))
             }
-            .padding(.top, 15)
-            .padding(.bottom, 25)
-            .padding(.horizontal, 30)
-            .background(RoundedRectangle(cornerRadius: 15)
-                .fill(LinearGradient(
-                    gradient: Gradient(stops: [
-                        .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
-                        .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
-                    startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
-                    endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
-                    .frame(width: screenSize.width))
-            .ignoresSafeArea(edges: .bottom)
             .alert("Please make sure to sort all items before moving on.", isPresented: $incompleteSortingAlert) {
                 Button("OK", role: .cancel) { }
             }
-        }.ignoresSafeArea(edges: .bottom)
+        }
     }
 }
 
@@ -420,7 +426,7 @@ struct CategorySortingView: View {
     @State var incompleteSortingAlert: Bool = false
     
     var body: some View {
-        VStack {
+        ZStack {
             VStack (spacing: 15){
                 // HEADER (NAME, TOTAL)
                 HStack {
@@ -471,81 +477,83 @@ struct CategorySortingView: View {
                         if !business.isEmpty {
                             GroupItems(groupName: "Business", sortingStage: $sortingStage, items: $business, selected: $selected, categoriesItems: $categoriesItems, openList: true)
                         }
-                        Rectangle().foregroundStyle(.clear).frame(height: 25)
+                        Rectangle().foregroundStyle(.clear).frame(height: 300)
                     }
                 }.clipped()
             }
             // BOTTOM SHEET
-            VStack (spacing: 20){
-                HStack {
-                    Button(action: {sortingStage = .items}) {
-                        ZStack {
-                            Circle()
-                                .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
-                                .frame(width: 23)
-                            Image(systemName: "arrow.left")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
-                        }
-                    }
-                    Spacer()
-                    Text("CATEGORIZE SELECTED AS")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundStyle(.white)
-                        .tracking(0.84)
-                    Spacer()
-                    Button(action: {
-                        var allCategorized = true
-                        for key in business.keys {
-                            if let category = categoriesItems[key], !category.isEmpty {
-                                continue
-                            } else {
-                                allCategorized = false
-                                incompleteSortingAlert = true
-                                break
+            VStack {
+                Spacer()
+                VStack (spacing: 20){
+                    HStack {
+                        Button(action: {sortingStage = .items}) {
+                            ZStack {
+                                Circle()
+                                    .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
+                                    .frame(width: 23)
+                                Image(systemName: "arrow.left")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
                             }
                         }
-                        if allCategorized {
-                            presentationMode.wrappedValue.dismiss()
+                        Spacer()
+                        Text("CATEGORIZE SELECTED AS")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(.white)
+                            .tracking(0.84)
+                        Spacer()
+                        Button(action: {
+                            var allCategorized = true
+                            for key in business.keys {
+                                if let category = categoriesItems[key], !category.isEmpty {
+                                    continue
+                                } else {
+                                    allCategorized = false
+                                    incompleteSortingAlert = true
+                                    break
+                                }
+                            }
+                            if allCategorized {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
+                                    .frame(width: 23)
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                            }
                         }
-                    }) {
-                        ZStack {
-                            Circle()
-                                .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
-                                .frame(width: 23)
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
+                    }
+                    VStack (spacing: 15) {
+                        HStack (spacing: 15){
+                            categoryButton(categoryName: "TRAVEL & TRANSPORT", iconName: "car", selected: $selected, categoriesItems: $categoriesItems)
+                            categoryButton(categoryName: "UTILITIES", iconName: "lightbulb", selected: $selected, categoriesItems: $categoriesItems)
+                            categoryButton(categoryName: "EQUIPMENT & SUPPLIES", iconName: "wrench.and.screwdriver", selected: $selected, categoriesItems: $categoriesItems)
+                        }
+                        HStack (spacing: 15){
+                            categoryButton(categoryName: "SALARIES & WAGES", iconName: "banknote", selected: $selected, categoriesItems: $categoriesItems)
+                            categoryButton(categoryName: "SOFTWARE", iconName: "tv", selected: $selected, categoriesItems: $categoriesItems)
+                            categoryButton(categoryName: "OTHER", iconName: "", selected: $selected, categoriesItems: $categoriesItems)
                         }
                     }
                 }
-                VStack (spacing: 15) {
-                    HStack (spacing: 15){
-                        categoryButton(categoryName: "TRAVEL & TRANSPORT", iconName: "car", selected: $selected, categoriesItems: $categoriesItems)
-                        categoryButton(categoryName: "UTILITIES", iconName: "lightbulb", selected: $selected, categoriesItems: $categoriesItems)
-                        categoryButton(categoryName: "EQUIPMENT & SUPPLIES", iconName: "wrench.and.screwdriver", selected: $selected, categoriesItems: $categoriesItems)
-                    }
-                    HStack (spacing: 15){
-                        categoryButton(categoryName: "SALARIES & WAGES", iconName: "banknote", selected: $selected, categoriesItems: $categoriesItems)
-                        categoryButton(categoryName: "SOFTWARE", iconName: "tv", selected: $selected, categoriesItems: $categoriesItems)
-                        categoryButton(categoryName: "OTHER", iconName: "", selected: $selected, categoriesItems: $categoriesItems)
-                    }
-                }
+                .padding(.top, 15)
+                .padding(.bottom, 25)
+                .padding(.horizontal, 30)
+                .background(RoundedRectangle(cornerRadius: 15)
+                    .fill(LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
+                            .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
+                        startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
+                        endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
+                        .padding(.horizontal, 15))
             }
-            .padding(.top, 15)
-            .padding(.bottom, 25)
-            .padding(.horizontal, 30)
-            .background(RoundedRectangle(cornerRadius: 15)
-                .fill(LinearGradient(
-                    gradient: Gradient(stops: [
-                        .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
-                        .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
-                    startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
-                    endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
-                    .frame(width: screenSize.width))
-        }.ignoresSafeArea(edges: .bottom)
-            .alert("Please make sure to categorize all items.", isPresented: $incompleteSortingAlert) {
-                Button("OK", role: .cancel) { }
-            }
+        }.alert("Please make sure to categorize all items.", isPresented: $incompleteSortingAlert) {
+            Button("OK", role: .cancel) { }
+        }
     }
 }
