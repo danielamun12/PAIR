@@ -96,11 +96,11 @@ struct CameraView: View {
                             Button(action: camera.takePic) {
                                 ZStack {
                                     Circle()
-                                        .fill(.white)
-                                        .frame(width: 69, height: 69)
+                                        .strokeBorder(.white, lineWidth: 4)
+                                        .frame(width: 70, height: 70)
                                     Circle()
-                                        .fill(.white).strokeBorder(.black, lineWidth: 2)
-                                        .frame(width: 62, height: 62)
+                                        .fill(.white)
+                                        .frame(width: 58, height: 58)
                                 }
                             }
                         }
