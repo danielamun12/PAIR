@@ -22,12 +22,10 @@ struct IndividualItem : View {
     
     var body: some View {
         Button(action: {
-            if sortingStage != .fullReceipt {
-                if selected[name] == price {
-                    selected.removeValue(forKey: name)
-                } else {
-                    selected[name] = price
-                }
+            if selected[name] == price {
+                selected.removeValue(forKey: name)
+            } else {
+                selected[name] = price
             }
         }) {
             ZStack {
@@ -60,13 +58,11 @@ struct IndividualItem : View {
                     Spacer()
                     LazyVGrid(columns: columns) {
                         Text(String(quantity))
-                            .font(.system(size: sortingStage == .categories ? 16 : 18, weight: .semibold))
+                            .font(.system(size: sortingStage == .categories ? 15 : 18, weight: .semibold))
                             .foregroundStyle(.black)
-                        // Adjust width for price text to allow longer prices to fit
                         Text("$"+String(format: "%.2f", price))
-                            .font(.system(size: sortingStage == .categories ? 16 : 18, weight: .semibold))
+                            .font(.system(size: sortingStage == .categories ? 15 : 18, weight: .semibold))
                             .foregroundStyle(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             .lineLimit(1)
                         if sortingStage == .categories && categoriesItems[name] != nil{
                             Image(systemName: categoriesItems[name]!)
@@ -77,7 +73,9 @@ struct IndividualItem : View {
                 }.padding(.horizontal, 25)
                     .padding(.vertical, 10)
             }
-        }.onAppear {
+        }
+        .disabled(sortingStage == .fullReceipt)
+        .onAppear {
             if sortingStage == .categories {
                 columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
             }
