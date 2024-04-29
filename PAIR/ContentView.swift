@@ -215,7 +215,7 @@ struct ReceiptSourceSelection: View {
                                 Spacer()
                             }.padding(.horizontal, 15)
                         }.frame(width: 265, height: 45)
-                    }.simultaneousGesture(TapGesture().onEnded { _ in page = 0})
+                    }
                 }
             }.padding(.top, 20)
                 .padding(.bottom, 65)

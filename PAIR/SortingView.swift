@@ -68,7 +68,7 @@ struct ReceiptSortingView: View {
         }.onAppear {
             (storeName, date, allItems, subtotal, tax, total) = extractReceiptInfo(receipt: receiptObservations)
             unsortedItems = allItems
-            sortingStage = .fullReceipt
+            sortingStage = .items
         }
     }
 }
@@ -376,10 +376,11 @@ struct ItemSortingView: View {
                 }
                 .padding(.top, 15)
                 .padding(.bottom, 25)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 15)
                 .background(RoundedRectangle(cornerRadius: 15)
                     .fill(greenGradient))
             }
+            .padding(.horizontal, 15)
             .alert("Please make sure to sort all items before moving on.", isPresented: $incompleteSortingAlert) {
                 Button("OK", role: .cancel) { }
             }
@@ -519,10 +520,11 @@ struct CategorySortingView: View {
                 }
                 .padding(.top, 15)
                 .padding(.bottom, 25)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 15)
                 .background(RoundedRectangle(cornerRadius: 15)
                     .fill(greenGradient))
             }
+            .padding(.horizontal, 15)
         }.alert("Please make sure to categorize all items.", isPresented: $incompleteSortingAlert) {
             Button("OK", role: .cancel) { }
         }
