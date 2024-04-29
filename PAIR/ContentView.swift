@@ -16,7 +16,7 @@ struct ContentView: View {
             } else {
                 ReceiptSourceSelection(page: $page)
             }
-        }
+        }.onAppear{sendReceiptNotification()}
     }
 }
 

@@ -12,6 +12,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         configureNavigationBarAppearance()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if granted {
+                print("Notification authorization granted")
+            } else {
+                if let error = error {
+                    print("Notification authorization error: \(error)")
+                } else {
+                    print("Notification authorization denied")
+                }
+            }
+        }
         return true
     }
 
@@ -94,6 +105,23 @@ struct RoundedCorner: Shape {
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners) )
+    }
+}
+
+func sendReceiptNotification() {
+    let content = UNMutableNotificationContent()
+    content.title = "New Purchase"
+    content.subtitle = "$56.98 from Giant Eagle"
+    content.body = "Snap a photo of your receipt now!"
+    content.sound = UNNotificationSound.default
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+    let request = UNNotificationRequest(identifier: "reminderNotification", content: content, trigger: trigger)
+    UNUserNotificationCenter.current().add(request) { error in
+        if let error = error {
+            print("Error scheduling notification: \(error.localizedDescription)")
+        } else {
+            print("Notification scheduled successfully")
+        }
     }
 }
 
