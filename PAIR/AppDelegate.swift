@@ -13,7 +13,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         configureNavigationBarAppearance()
         configureTabBarAppearance()
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
         return true
     }
 
@@ -48,16 +47,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        if let receiptIDString = userInfo["receiptID"] as? String {
-            AppState.shared.pageToNavigationTo = receiptIDString
-        }
-        completionHandler()
-    }
 }
 
 struct appBackground: View{
@@ -79,17 +68,6 @@ extension UINavigationController {
 
 func dismissKeyboard() {
     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-}
-
-func sendReceiptNotification() {
-    let receiptID = UUID() // Identify the specific receipt
-    let content = UNMutableNotificationContent()
-    content.title = "New Receipt Notification"
-    content.body = "Tap to view receipt"
-    content.userInfo = ["receiptID": receiptID]
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-    let request = UNNotificationRequest(identifier: "receiptNotification", content: content, trigger: trigger)
-    UNUserNotificationCenter.current().add(request)
 }
 
 extension UIImage {

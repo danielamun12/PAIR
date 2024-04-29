@@ -7,32 +7,8 @@
 
 import SwiftUI
 
-class AppState: ObservableObject {
-    static let shared = AppState()
-    @Published var pageToNavigationTo : String?
-}
-
-
-struct Dest : View {
-    var message : String
-    var body: some View {
-        Text("\(message)")
-    }
-}
-
-
 struct ContentView: View {
-    @ObservedObject var appState = AppState.shared
-    @State var navigate = false
     @State private var selectedTab = 1
-    
-    var pushNavigationBinding : Binding<Bool> {
-        .init { () -> Bool in
-            appState.pageToNavigationTo != nil
-        } set: { (newValue) in
-            if !newValue { appState.pageToNavigationTo = nil }
-        }
-    }
     
     var body: some View {
         
@@ -40,7 +16,7 @@ struct ContentView: View {
             ZStack {
                 appBackground()
                 TabView (selection: $selectedTab) {
-                    ReceiptListView()
+                    Home()
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }
@@ -49,12 +25,8 @@ struct ContentView: View {
                         .tabItem {
                             Label("Receipts", systemImage: "scroll.fill")
                         }
-                        .overlay(NavigationLink(destination: SortingView(receipt: $appState.pageToNavigationTo),
-                                                isActive: pushNavigationBinding) {
-                            EmptyView()
-                        })
                         .tag(2)
-                    ReceiptListView()
+                    Settings()
                         .tabItem {
                             Label("Settings", systemImage: "gearshape.fill")
                         }
