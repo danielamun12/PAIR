@@ -66,7 +66,7 @@ public func visualization(_ image: UIImage, observations: [VNDetectedObjectObser
 
     context?.setLineWidth(2)
     context?.setLineJoin(CGLineJoin.round)
-    context?.setStrokeColor(UIColor.black.cgColor)
+    context?.setStrokeColor(UIColor.clear.cgColor)
     context?.setFillColor(red: 0, green: 1, blue: 0, alpha: 0.3)
 
     observations.forEach { observation in

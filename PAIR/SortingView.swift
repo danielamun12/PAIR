@@ -74,6 +74,7 @@ struct ReceiptSortingView: View {
 }
 
 struct FullReceiptSortingView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var storeName: String
     @State var date: String
     @State var subtotal: Double
@@ -92,44 +93,43 @@ struct FullReceiptSortingView: View {
     var body: some View {
         ZStack {
             VStack (spacing: 15){
-                // HEADER (NAME, DATE, TOTAL)
-                HStack {
-                    VStack (alignment: .leading, spacing: 35) {
-                        VStack (alignment: .leading, spacing: 5) {
-                            Text(storeName.prefix(1).capitalized + storeName.dropFirst())
-                                .font(.system(size: 28, weight: .semibold))
-                                .foregroundStyle(.white)
-                            HStack (spacing: 25){
-                                Text(date)
-                                    .font(.system(size: 13, weight: .medium))
-                                    .foregroundStyle(.white)
-                                Text("Paid by Visa xxxx xxxx xxxx 5612")
-                                    .font(.system(size: 13, weight: .medium))
-                                    .foregroundStyle(.white)
+                VStack (spacing: 0){
+                    HStack {
+                        Spacer()
+                        Button(action:  {presentationMode.wrappedValue.dismiss()}) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 18, weight: .black))
+                                .foregroundStyle(.black)
+                        }
+                    }.padding(.top, 20)
+                    // HEADER (NAME, DATE, TOTAL)
+                    HStack {
+                        VStack (alignment: .leading, spacing: 25) {
+                            VStack (alignment: .leading, spacing: 10) {
+                                Text(storeName.prefix(1).capitalized + storeName.dropFirst())
+                                    .font(.system(size: 28, weight: .semibold))
+                                    .foregroundStyle(.black)
+                                VStack (alignment: .leading, spacing: 5){
+                                    Text(date)
+                                        .font(.system(size: 13, weight: .medium))
+                                        .foregroundStyle(.black.opacity(0.7))
+                                    Text("Paid by Visa xxxx xxxx xxxx 5612")
+                                        .font(.system(size: 13, weight: .medium))
+                                        .foregroundStyle(.black.opacity(0.7))
+                                }
                             }
-                        }.padding(.horizontal, 30)
-                        
-                        VStack (alignment: .leading, spacing: 5) {
-                            Text("Total Amount")
-                                .font(.system(size: 10, weight: .medium))
-                                .foregroundStyle(.white)
                             Text("$"+String(format: "%.2f", total))
-                                .font(.system(size: 36))
-                                .foregroundStyle(.white)
-                        }.padding(.horizontal, 30)
-                    }.padding(.top, 35)
-                        .padding(.bottom, 20)
-                    Spacer()
-                }.background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(LinearGradient(
-                            gradient: Gradient(stops: [
-                                .init(color: Color(#colorLiteral(red: 0.24313725531101227, green: 0.6941176652908325, blue: 0.2823529541492462, alpha: 1)), location: 0),
-                                .init(color: Color(#colorLiteral(red: 0.612762987613678, green: 0.821533203125, blue: 0.5394119620323181, alpha: 1)), location: 1)]),
-                            startPoint: UnitPoint(x: 0.02808989848203508, y: 0.05072464031020463),
-                            endPoint: UnitPoint(x: 0.999999972366374, y: 0.9758455178655459)))
-                        .padding(.horizontal, 15)
-                )
+                                .font(.system(size: 36, weight: .bold))
+                                .foregroundStyle(LinearGradient(
+                                    gradient: Gradient(stops: [
+                                        .init(color: Color(#colorLiteral(red: 0.3849477469921112, green: 0.8138183355331421, blue: 0.42224085330963135, alpha: 1)), location: 0),
+                                        .init(color: Color(#colorLiteral(red: 0.5774057507514954, green: 0.8213704228401184, blue: 0.5986198782920837, alpha: 1)), location: 1)]),
+                                    startPoint: UnitPoint(x: 0.011235987979254458, y: 0.02209937045779875),
+                                    endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
+                        }.padding(.bottom, 20)
+                        Spacer()
+                    }
+                }.padding(.horizontal, 20)
                 
                 HStack (spacing: 50){
                     Spacer()
@@ -218,11 +218,13 @@ struct FullReceiptSortingView: View {
                         endPoint: UnitPoint(x: 0.9803370915035547, y: 0.9640884194913579)))
                         .padding(.horizontal, 15))
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
 struct ItemSortingView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var storeName: String
     @State var date: String
     @State var subtotal: Double
@@ -245,29 +247,25 @@ struct ItemSortingView: View {
                 // HEADER (NAME, TOTAL)
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
-                        Text(storeName.prefix(1).capitalized + storeName.dropFirst())
-                            .font(.system(size: 28, weight: .semibold))
-                            .foregroundStyle(.white)
+                        HStack {
+                            Text(storeName.prefix(1).capitalized + storeName.dropFirst())
+                                .font(.system(size: 28, weight: .semibold))
+                                .foregroundStyle(.black)
+                            Spacer()
+                            Button(action:  {presentationMode.wrappedValue.dismiss()}) {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 18, weight: .black))
+                                    .foregroundStyle(.black)
+                            }
+                        }
                         
                         Text("$"+String(format: "%.2f", total))
-                            .font(.system(size: 36))
-                            .foregroundStyle(.white)
-                    }.padding(.horizontal, 30)
-                        .padding(.vertical, 10)
+                            .font(.system(size: 28, weight: .semibold))
+                            .foregroundStyle(.black)
+                    }
                     Spacer()
-                }.background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(LinearGradient(
-                            gradient: Gradient(stops: [
-                                .init(color: Color(#colorLiteral(red: 0.24313725531101227, green: 0.6941176652908325, blue: 0.2823529541492462, alpha: 1)), location: 0),
-                                .init(color: Color(#colorLiteral(red: 0.612762987613678, green: 0.821533203125, blue: 0.5394119620323181, alpha: 1)), location: 1)]),
-                            startPoint: UnitPoint(x: 0.02808989848203508, y: 0.05072464031020463),
-                            endPoint: UnitPoint(x: 0.999999972366374, y: 0.9758455178655459)))
-                        .padding(.horizontal, 15)
-                )
-                Text("SELECT THE ITEMS YOU WANT TO SORT")
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(.black)
+                }.padding(.horizontal, 30)
+                    .padding(.top, 20)
                 
                 HStack (spacing: 50){
                     Spacer()
@@ -402,7 +400,7 @@ struct ItemSortingView: View {
             .alert("Please make sure to sort all items before moving on.", isPresented: $incompleteSortingAlert) {
                 Button("OK", role: .cancel) { }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
@@ -431,29 +429,25 @@ struct CategorySortingView: View {
                 // HEADER (NAME, TOTAL)
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
-                        Text(storeName.prefix(1).capitalized + storeName.dropFirst())
-                            .font(.system(size: 28, weight: .semibold))
-                            .foregroundStyle(.white)
+                        HStack {
+                            Text(storeName.prefix(1).capitalized + storeName.dropFirst())
+                                .font(.system(size: 28, weight: .semibold))
+                                .foregroundStyle(.black)
+                            Spacer()
+                            Button(action:  {presentationMode.wrappedValue.dismiss()}) {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 18, weight: .black))
+                                    .foregroundStyle(.black)
+                            }
+                        }
                         
                         Text("$"+String(format: "%.2f", total))
-                            .font(.system(size: 36))
-                            .foregroundStyle(.white)
-                    }.padding(.horizontal, 30)
-                        .padding(.vertical, 10)
+                            .font(.system(size: 28, weight: .semibold))
+                            .foregroundStyle(.black)
+                    }
                     Spacer()
-                }.background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(LinearGradient(
-                            gradient: Gradient(stops: [
-                                .init(color: Color(#colorLiteral(red: 0.24313725531101227, green: 0.6941176652908325, blue: 0.2823529541492462, alpha: 1)), location: 0),
-                                .init(color: Color(#colorLiteral(red: 0.612762987613678, green: 0.821533203125, blue: 0.5394119620323181, alpha: 1)), location: 1)]),
-                            startPoint: UnitPoint(x: 0.02808989848203508, y: 0.05072464031020463),
-                            endPoint: UnitPoint(x: 0.999999972366374, y: 0.9758455178655459)))
-                        .padding(.horizontal, 15)
-                )
-                Text("SELECT THE ITEMS YOU WANT TO SORT")
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(.black)
+                }.padding(.horizontal, 30)
+                    .padding(.top, 20)
                 
                 HStack (spacing: 20){
                     Spacer()
@@ -555,5 +549,6 @@ struct CategorySortingView: View {
         }.alert("Please make sure to categorize all items.", isPresented: $incompleteSortingAlert) {
             Button("OK", role: .cancel) { }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
