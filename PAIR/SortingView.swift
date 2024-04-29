@@ -478,7 +478,7 @@ struct CategorySortingView: View {
             // BOTTOM SHEET
             VStack (spacing: 20){
                 HStack {
-                    Button(action: {sortingStage = .fullReceipt}) {
+                    Button(action: {sortingStage = .items}) {
                         ZStack {
                             Circle()
                                 .foregroundStyle(Color(#colorLiteral(red: 0.239215686917305, green: 0.46666666865348816, blue: 0.26274511218070984, alpha: 1)))
