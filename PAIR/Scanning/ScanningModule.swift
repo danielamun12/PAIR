@@ -81,10 +81,10 @@ public func visualization(_ image: UIImage, observations: [VNDetectedObjectObser
     return resultImage!
 }
 
-func extractReceiptInfo(receipt: [String]) {
+func extractReceiptInfo(receipt: [String]) -> (String, String, [String: Double], Double, Double, Double) {
     let storeName = receipt[0]
     
-    let datePattern = "\\d{2}/\\d{2}/\\d{4}"
+    let datePattern = "\\d{1,2}/\\d{1,2}/\\d{2,4}"
     let dateRegex = try! NSRegularExpression(pattern: datePattern)
     let dateString = receipt.joined(separator: " ")
     let dateMatch = dateRegex.firstMatch(in: dateString, options: [], range: NSRange(location: 0, length: dateString.utf16.count))
@@ -92,22 +92,39 @@ func extractReceiptInfo(receipt: [String]) {
     if dateMatch != nil {
         date = (dateString as NSString).substring(with: dateMatch!.range)
     }
-
+    var subtotal = 0.0
+    var total = 0.0
+    var tax = 0.0
     var items = [String: Double]()
     for i in 2..<receipt.count {
-        let pricePattern = "^\\d+\\.\\d{2}$"
+        let pricePattern = "^\\$?\\d+\\.\\d{2}$"
         let priceRegex = try! NSRegularExpression(pattern: pricePattern)
         let priceMatch = priceRegex.firstMatch(in: receipt[i], options: [], range: NSRange(location: 0, length: receipt[i].utf16.count))
         if priceMatch != nil {
-            var itemName = ""
-            let prevString = receipt[i-1]
-            if prevString.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil {
-                itemName = trimNonLetters(receipt[i-2])
-            } else {
-                itemName = trimNonLetters(receipt[i-1])
+            let itemName = receipt[i-1]
+            var itemPrice = receipt[i]
+            if itemPrice.first == "$" {
+                itemPrice.removeFirst()
             }
-            let itemPrice = receipt[i]
             items[itemName] = Double(itemPrice)
+        } else if receipt[i] == "TOTAL" || receipt[i] == "Total" {
+            var totalString = receipt[i+1]
+            if totalString.first == "$" {
+                totalString.removeFirst()
+                total = Double(totalString) ?? 0.0
+            }
+        } else if receipt[i] == "SUBTOTAL" || receipt[i] == "Subtotal" {
+            var subtotalString = receipt[i+1]
+            if subtotalString.first == "$" {
+                subtotalString.removeFirst()
+                subtotal = Double(subtotalString) ?? 0.0
+            }
+        } else if receipt[i] == "TAX" || receipt[i] == "Tax" {
+            var taxString = receipt[i+1]
+            if taxString.first == "$" {
+                taxString.removeFirst()
+                tax = Double(taxString) ?? 0.0
+            }
         }
     }
     items.removeValue(forKey: "Total")
@@ -116,37 +133,8 @@ func extractReceiptInfo(receipt: [String]) {
     items.removeValue(forKey: "SUBTOTAL")
     items.removeValue(forKey: "Tax")
     items.removeValue(forKey: "TAX")
-
-    let subtotalPattern = "SUBTOTAL (\\d+\\.\\d{2})"
-    let subtotalRegex = try! NSRegularExpression(pattern: subtotalPattern)
-    let subtotalMatch = subtotalRegex.firstMatch(in: dateString, options: [], range: NSRange(location: 0, length: dateString.utf16.count))
-    var subtotal = ""
-    if subtotalMatch != nil {
-        subtotal = (dateString as NSString).substring(with: subtotalMatch!.range(at: 1))
-    }
-
-    let taxPattern = "TAX (\\d+\\.\\d{2})"
-    let taxRegex = try! NSRegularExpression(pattern: taxPattern)
-    let taxMatch = taxRegex.firstMatch(in: dateString, options: [], range: NSRange(location: 0, length: dateString.utf16.count))
-    var tax =  ""
-    if taxMatch != nil {
-        tax = (dateString as NSString).substring(with: taxMatch!.range(at: 1))
-    }
-
-    let totalPattern = "TOTAL (\\d+\\.\\d{2})"
-    let totalRegex = try! NSRegularExpression(pattern: totalPattern)
-    let totalMatch = totalRegex.firstMatch(in: dateString, options: [], range: NSRange(location: 0, length: dateString.utf16.count))
-    var total = ""
-    if totalMatch != nil {
-        total = (dateString as NSString).substring(with: totalMatch!.range(at: 1))
-    }
-
-    print("Store Name: \(storeName)")
-    print("Date: \(date)")
-    print("Items: \(items)")
-    print("Subtotal: \(subtotal)")
-    print("Tax: \(tax)")
-    print("Total: \(total)")
+    
+    return (storeName, date, items, subtotal, tax, total)
 }
 
 func trimNonLetters(_ input: String) -> String {

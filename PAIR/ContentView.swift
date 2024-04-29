@@ -35,28 +35,31 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack {
-            appBackground()
-            TabView (selection: $selectedTab) {
-                ReceiptListView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                    .tag(1)
-                ReceiptListView()
-                    .tabItem {
-                        Label("Receipts", systemImage: "scroll.fill")
-                    }
-                    .overlay(NavigationLink(destination: SortingView(receipt: $appState.pageToNavigationTo),
-                                            isActive: pushNavigationBinding) {
-                        EmptyView()
-                    })
-                    .tag(2)
-                ReceiptListView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gearshape.fill")
-                    }
-                    .tag(3)
+        
+        NavigationView {
+            ZStack {
+                appBackground()
+                TabView (selection: $selectedTab) {
+                    ReceiptListView()
+                        .tabItem {
+                            Label("Home", systemImage: "house.fill")
+                        }
+                        .tag(1)
+                    ReceiptListView()
+                        .tabItem {
+                            Label("Receipts", systemImage: "scroll.fill")
+                        }
+                        .overlay(NavigationLink(destination: SortingView(receipt: $appState.pageToNavigationTo),
+                                                isActive: pushNavigationBinding) {
+                            EmptyView()
+                        })
+                        .tag(2)
+                    ReceiptListView()
+                        .tabItem {
+                            Label("Settings", systemImage: "gearshape.fill")
+                        }
+                        .tag(3)
+                }
             }
         }
     }

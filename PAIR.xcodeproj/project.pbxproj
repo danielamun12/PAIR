@@ -18,10 +18,10 @@
 		654B5B972BD02FDB00F585AD /* SortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B962BD02FDB00F585AD /* SortingView.swift */; };
 		654B5B992BD0313D00F585AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B982BD0313D00F585AD /* AppDelegate.swift */; };
 		654B5B9B2BD57DA300F585AD /* ScanningModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B9A2BD57DA300F585AD /* ScanningModule.swift */; };
-		654B5B9E2BD59BF700F585AD /* ScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B9D2BD59BF700F585AD /* ScanningView.swift */; };
 		654B5BA02BD59F7100F585AD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B9F2BD59F7100F585AD /* CameraView.swift */; };
 		654B5BA22BD952F500F585AD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5BA12BD952F500F585AD /* Onboarding.swift */; };
 		654B5BA52BD97BEA00F585AD /* ReceiptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5BA42BD97BEA00F585AD /* ReceiptListView.swift */; };
+		654B5BA82BDF03A600F585AD /* SortingAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5BA72BDF03A600F585AD /* SortingAssets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +58,10 @@
 		654B5B962BD02FDB00F585AD /* SortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingView.swift; sourceTree = "<group>"; };
 		654B5B982BD0313D00F585AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		654B5B9A2BD57DA300F585AD /* ScanningModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningModule.swift; sourceTree = "<group>"; };
-		654B5B9D2BD59BF700F585AD /* ScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningView.swift; sourceTree = "<group>"; };
 		654B5B9F2BD59F7100F585AD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		654B5BA12BD952F500F585AD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		654B5BA42BD97BEA00F585AD /* ReceiptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListView.swift; sourceTree = "<group>"; };
+		654B5BA72BDF03A600F585AD /* SortingAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingAssets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,6 @@
 		654B5B9C2BD5829F00F585AD /* Scanning */ = {
 			isa = PBXGroup;
 			children = (
-				654B5B9D2BD59BF700F585AD /* ScanningView.swift */,
 				654B5B9F2BD59F7100F585AD /* CameraView.swift */,
 				654B5B9A2BD57DA300F585AD /* ScanningModule.swift */,
 			);
@@ -168,6 +167,7 @@
 			children = (
 				654B5BA42BD97BEA00F585AD /* ReceiptListView.swift */,
 				654B5B962BD02FDB00F585AD /* SortingView.swift */,
+				654B5BA72BDF03A600F585AD /* SortingAssets.swift */,
 			);
 			path = ReceiptsTab;
 			sourceTree = "<group>";
@@ -311,11 +311,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				654B5B992BD0313D00F585AD /* AppDelegate.swift in Sources */,
+				654B5BA82BDF03A600F585AD /* SortingAssets.swift in Sources */,
 				654B5BA52BD97BEA00F585AD /* ReceiptListView.swift in Sources */,
 				654B5BA02BD59F7100F585AD /* CameraView.swift in Sources */,
 				654B5B4C2BC6E41300F585AD /* ContentView.swift in Sources */,
 				654B5B4A2BC6E41300F585AD /* PAIRApp.swift in Sources */,
-				654B5B9E2BD59BF700F585AD /* ScanningView.swift in Sources */,
 				654B5B9B2BD57DA300F585AD /* ScanningModule.swift in Sources */,
 				654B5BA22BD952F500F585AD /* Onboarding.swift in Sources */,
 				654B5B972BD02FDB00F585AD /* SortingView.swift in Sources */,

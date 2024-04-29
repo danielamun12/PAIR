@@ -367,16 +367,14 @@ struct SignUpPage2: View {
                     }
                 }
                 // Next Button
-                NavigationLink(destination: ScanningView()) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.black)
-                            .frame(width: 170, height: 45)
-                        Text("FINISH")
-                            .font(.system(size: 15))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 15)
-                    }
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(.black)
+                        .frame(width: 170, height: 45)
+                    Text("FINISH")
+                        .font(.system(size: 15))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 15)
                 }
             }
             
