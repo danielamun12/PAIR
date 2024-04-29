@@ -16,7 +16,6 @@ enum SortingStage: Equatable {
 }
 
 struct SortingView: View {
-    @Binding var receipt: String?
     @State var businessItmes: [[String]] = []
     @State var personalItems: [String] = []
     @State var image: UIImage? = nil
@@ -27,61 +26,15 @@ struct SortingView: View {
         ZStack {
             appBackground()
             if image == nil {
-                IDReceiptType(receipt: $receipt, image: $image, receiptObservations: $receiptObservations)
+                CameraView(camera: CameraModel(), image: $image, stringResults: $receiptObservations)
             } else {
-                ReceiptSortingView(receipt: $receipt, image: $image, receiptObservations: $receiptObservations)
+                ReceiptSortingView(image: $image, receiptObservations: $receiptObservations)
             }
         }
     }
 }
 
-struct IDReceiptType: View {
-    @Binding var receipt: String?
-    @Binding var image: UIImage?
-    @Binding var receiptObservations: [String]
-    
-    var body: some View {
-        ZStack {
-            appBackground()
-            VStack {
-                Spacer()
-                Text("Total transaction amount")
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(Color(#colorLiteral(red: 0.4, green: 0.38, blue: 0.35, alpha: 1)))
-                Text("$95.43")
-                    .font(.custom("Crimson Text Regular", size: 64))
-                    .foregroundStyle(.black)
-                Text("How did you receive the receipt to your transaction?")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(.black)
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color("PrimaryButton"))
-                        .frame(height: 50)
-                    
-                    Text("EMAIL")
-                        .font(.custom("Manrope Bold", size: 16))
-                        .foregroundStyle(.white)
-                }
-                NavigationLink(destination: CameraView(camera: CameraModel(), image: $image, stringResults: $receiptObservations)) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color("PrimaryButton"))
-                            .frame(height: 50)
-                        
-                        Text("PAPER")
-                            .font(.custom("Manrope Bold", size: 16))
-                            .foregroundStyle(.white)
-                    }
-                }
-                Spacer()
-            }.padding(.horizontal, 30)
-        }
-    }
-}
-
 struct ReceiptSortingView: View {
-    @Binding var receipt: String?
     @Binding var image: UIImage?
     @Binding var receiptObservations: [String]
     

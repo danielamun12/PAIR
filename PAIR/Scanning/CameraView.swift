@@ -144,7 +144,6 @@ struct CameraView: View {
                         Button (action: {
                             self.postingPicture = true
                             image = camera.image!
-                            presentationMode.wrappedValue.dismiss()
                         }) {
                             if postingPicture {
                                 ProgressView()
