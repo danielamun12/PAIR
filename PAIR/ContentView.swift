@@ -79,14 +79,14 @@ struct ReceiptTypeSelection: View {
                             .frame(width: 265, height: 45)
                         HStack {
                             Image(systemName: "person.fill")
-                                .font(.system(size: 18))
+                                .font(.system(size: 25))
                                 .foregroundStyle(.white)
                             Spacer()
                             Text("PERSONAL")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundStyle(.white)
                             Spacer()
-                        }.padding(.horizontal, 15)
+                        }.padding(.horizontal, 20)
                     }.frame(width: 265, height: 45)
                     
                     ZStack {
@@ -97,13 +97,13 @@ struct ReceiptTypeSelection: View {
                             Image("PairLogo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(height: 18)
+                                .frame(width: 20)
                             Spacer()
                             Text("BUSINESS")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundStyle(.white)
                             Spacer()
-                        }.padding(.horizontal, 15)
+                        }.padding(.horizontal, 24)
                     }.frame(width: 265, height: 45)
                     
                     Button(action: {page = 1}){
@@ -111,15 +111,16 @@ struct ReceiptTypeSelection: View {
                             RoundedRectangle(cornerRadius: 5)
                                 .foregroundStyle(greenGradient)
                             HStack {
-                                Image(systemName: "arrow.triangle.branch")
-                                    .font(.system(size: 18))
-                                    .foregroundStyle(.white)
+                                Image("BothIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 25)
                                 Spacer()
-                                Text("MIXED")
+                                Text("BOTH")
                                     .font(.system(size: 18, weight: .bold))
                                     .foregroundStyle(.white)
                                 Spacer()
-                            }.padding(.horizontal, 15)
+                            }.padding(.horizontal, 22)
                         }.frame(width: 265, height: 45)
                     }
                 }
@@ -150,7 +151,7 @@ struct ReceiptSourceSelection: View {
                         Text("How did you receive the receipt?")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundStyle(.black)
-                        Text("")
+                        Text("If physical, have your receipt ready")
                             .font(.system(size: 16))
                             .foregroundStyle(.black)
                     }
@@ -187,33 +188,18 @@ struct ReceiptSourceSelection: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
                             .strokeBorder(.black, lineWidth: 1)
-                            .frame(width: 265, height: 45)
-                        HStack {
-                            Image(systemName: "envelope")
-                                .font(.system(size: 18))
-                                .foregroundStyle(.black)
-                            Spacer()
-                            Text("EMAIL")
-                                .font(.system(size: 18, weight: .bold))
-                                .foregroundStyle(.black)
-                            Spacer()
-                        }.padding(.horizontal, 15)
+                        Text("EMAIL")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundStyle(.black)
                     }.frame(width: 265, height: 45)
                     
                     NavigationLink(destination: SortingView()){
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
                                 .strokeBorder(.black, lineWidth: 1)
-                            HStack {
-                                Image(systemName: "scroll")
-                                    .font(.system(size: 18))
-                                    .foregroundStyle(.black)
-                                Spacer()
                                 Text("PHYSICAL RECEIPT")
                                     .font(.system(size: 18, weight: .bold))
                                     .foregroundStyle(.black)
-                                Spacer()
-                            }.padding(.horizontal, 15)
                         }.frame(width: 265, height: 45)
                     }
                 }
