@@ -546,7 +546,7 @@ struct ConfirmationSortingView : View {
                         
                         Button(action: {sortingStage = .items}) {
                             Image(systemName: "pencil")
-                                .font(.system(size: 25))
+                                .font(.system(size: 25, weight: .black))
                                 .foregroundStyle(Color("CategoryButtonGreen"))
                         }
                     }
