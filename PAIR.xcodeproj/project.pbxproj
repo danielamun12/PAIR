@@ -19,7 +19,6 @@
 		654B5B992BD0313D00F585AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B982BD0313D00F585AD /* AppDelegate.swift */; };
 		654B5B9B2BD57DA300F585AD /* ScanningModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B9A2BD57DA300F585AD /* ScanningModule.swift */; };
 		654B5BA02BD59F7100F585AD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5B9F2BD59F7100F585AD /* CameraView.swift */; };
-		654B5BA22BD952F500F585AD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5BA12BD952F500F585AD /* Onboarding.swift */; };
 		654B5BA82BDF03A600F585AD /* SortingAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B5BA72BDF03A600F585AD /* SortingAssets.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 		654B5B982BD0313D00F585AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		654B5B9A2BD57DA300F585AD /* ScanningModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningModule.swift; sourceTree = "<group>"; };
 		654B5B9F2BD59F7100F585AD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		654B5BA12BD952F500F585AD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		654B5BA72BDF03A600F585AD /* SortingAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingAssets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +112,6 @@
 				654B5B942BD02AF500F585AD /* Crimson_Text */,
 				654B5B492BC6E41300F585AD /* PAIRApp.swift */,
 				654B5B982BD0313D00F585AD /* AppDelegate.swift */,
-				654B5BA12BD952F500F585AD /* Onboarding.swift */,
 				654B5B4B2BC6E41300F585AD /* ContentView.swift */,
 				654B5B9C2BD5829F00F585AD /* Scanning */,
 				654B5B962BD02FDB00F585AD /* SortingView.swift */,
@@ -297,7 +294,6 @@
 				654B5B4C2BC6E41300F585AD /* ContentView.swift in Sources */,
 				654B5B4A2BC6E41300F585AD /* PAIRApp.swift in Sources */,
 				654B5B9B2BD57DA300F585AD /* ScanningModule.swift in Sources */,
-				654B5BA22BD952F500F585AD /* Onboarding.swift in Sources */,
 				654B5B972BD02FDB00F585AD /* SortingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
